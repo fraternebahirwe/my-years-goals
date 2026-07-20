@@ -16,7 +16,7 @@
     --accent-hover: #88b4c3;
     
     /* Typographie */
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'Courier New', Courier, monospace;
 }
 
@@ -44,23 +44,13 @@ main {
     padding: 3rem 1.5rem;
 }
 
-/* Séparateurs élégants */
-hr {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--text-muted), transparent);
-    margin: 2.5rem 0;
-    opacity: 0.4;
-}
-
 /* ==========================================================================
-   3. TYPOGRAPHIE (Tailles fluides et hiérarchie)
+   3. TYPOGRAPHIE
    ========================================================================== */
 h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem); /* S'adapte magiquement de l'iPhone au Mac */
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
     letter-spacing: -0.04em;
-    color: var(--text-primary);
     text-align: center;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
@@ -73,6 +63,8 @@ h2 {
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.5rem;
 }
 
 h3 {
@@ -95,15 +87,15 @@ a {
     color: var(--accent-blue);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 a:hover {
     color: var(--accent-hover);
 }
 
-/* Si tu as une navbar */
-.navbar {
+.navbar ul {
+    list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,61 +113,132 @@ a:hover {
 }
 
 /* ==========================================================================
-   5. COMPOSANTS SPÉCIFIQUES
+   5. MISES EN PAGE RE-STYLISÉES (Layouts)
    ========================================================================== */
 
-/* Listes de contact */
-ul {
-    list-style: none; /* On enlève les puces standards pour un look plus clean */
+/* Alignement intelligent Texte + Image de profil */
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 600px) {
+    .about-section {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+/* Galerie d'images responsive pour les vacances */
+.places-gallery {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin: 2rem 0;
+}
+
+@media (min-width: 650px) {
+    .places-gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.places-gallery li {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.places-gallery h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.places-gallery figure img {
+    width: 100%;
+    height: 250px; /* Force une hauteur harmonieuse dans la grille */
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+/* Liste des lieux à éviter */
+.avoid-list {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.avoid-list dt {
+    color: var(--accent-teal);
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.avoid-list dt:first-child {
+    margin-top: 0;
+}
+
+.avoid-list dd {
+    color: var(--text-secondary);
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+/* Listes de contact classiques */
+.contact-list {
+    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     margin: 1.5rem 0;
 }
 
-ul li {
+.contact-list li {
     font-size: 1.05rem;
     color: var(--text-secondary);
-    padding: 0.5rem 0;
 }
 
-/* Optimisation de l'image (FrateImg) */
+/* Image de profil isolée */
 .frateimg {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    max-width: 280px;
     height: auto;
-    max-height: 500px;
-    object-fit: cover; /* "cover" remplit mieux le bloc si tu as de bonnes proportions */
-    border-radius: 16px;
-    margin: 2rem auto;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Effet d'ombre de profondeur */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Léger contour brillant */
+    border-radius: 50%; /* Transformé en cercle moderne pour une photo de profil */
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Accordéons (details) */
+/* ==========================================================================
+   6. COMPOSANTS AVANCÉS
+   ========================================================================== */
+
+/* Éléments interactifs Details/Summary */
 details {
     background-color: var(--bg-card);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+summary {
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 details p {
     color: var(--accent-blue);
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     margin-bottom: 0;
-}
-
-dt {
-    color: var(--accent-teal);
-    font-weight: 600;
-}
-
-/* Formulaires / Fieldset */
-fieldset label {
-    color: var(--text-secondary);
-    font-size: 1rem;
 }
 
 /* Tableaux Modernisés */
@@ -183,14 +246,23 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-family: var(--font-mono);
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     background-color: var(--bg-card);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+caption {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    text-align: left;
 }
 
 th, td {
-    padding: 0.85rem 1rem;
+    padding: 1rem;
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -201,16 +273,102 @@ th {
     font-weight: 600;
 }
 
-/* Footer */
+tfoot td {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   7. FORMULAIRES DE CONTACT (Nouveau & Complet)
+   ========================================================================== */
+form {
+    margin: 2rem 0;
+}
+
+fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    background-color: var(--bg-card);
+}
+
+legend {
+    color: var(--accent-teal);
+    font-weight: 700;
+    padding: 0 0.75rem;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+label {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(73, 143, 173, 0.2);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--accent-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 0.5rem;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--accent-hover);
+}
+
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
 footer {
     text-align: center;
-    padding: 2rem 0;
-    font-size: 0.9rem;
+    padding: 3rem 0;
+    font-size: 0.95rem;
     color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 footer a {
     color: var(--text-muted);
+    font-weight: 600;
 }
 
 footer a:hover {
